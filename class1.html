@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>German A1 - Class 1</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 500px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    button {
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 20px;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    .quiz-option {
+        display: block;
+        width: 90%;
+        margin: 10px auto;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🇩🇪 Class 1 – Greetings & Pronouns</h1>
+
+<div class="card">
+    <h2>🃏 Flashcard</h2>
+
+    <h3 id="germanWord">Guten Morgen</h3>
+
+    <p><strong>Meaning:</strong> Good Morning</p>
+
+    <p>
+        <strong>Pronunciation:</strong><br>
+        <span id="pronunciation"></span>
+    </p>
+
+    <button onclick="nextCard()">Next Card</button>
+</div>
+
+<div class="card">
+    <h2>🎯 Quiz</h2>
+
+    <p><strong>What does "Gute Nacht" mean?</strong></p>
+
+    <button class="quiz-option" onclick="checkAnswer(false)">Good Morning</button>
+
+    <button class="quiz-option" onclick="checkAnswer(false)">Good Evening</button>
+
+    <button class="quiz-option" onclick="checkAnswer(true)">Good Night</button>
+
+    <button class="quiz-option" onclick="checkAnswer(false)">Goodbye</button>
+
+    <p id="quizResult"></p>
+</div>
+
+<button onclick="window.location.href='index.html'">
+🏠 Back to Home
+</button>
+
+<script>
+
+const flashcards = [
+
+{
+german: "Guten Morgen",
+meaning: "Good Morning",
+
+pronunciations: {
+Telugu: "గూటెన్ మోర్గెన్",
+Hindi: "गूटेन मॉर्गेन",
+Kannada: "ಗೂಟೆನ್ ಮೋರ್ಗೆನ್",
+English: "Goo-ten Mor-gen"
+}
+},
+
+{
+german: "Guten Abend",
+meaning: "Good Evening",
+
+pronunciations: {
+Telugu: "గూటెన్ ఆబెండ్",
+Hindi: "गूटेन आबेंट",
+Kannada: "ಗೂಟೆನ್ ಆಬೆಂಟ್",
+English: "Goo-ten Ah-bent"
+}
+},
+
+{
+german: "Gute Nacht",
+meaning: "Good Night",
+
+pronunciations: {
+Telugu: "గూటె నాఖ్ట్",
+Hindi: "गूटे नाख्ट",
+Kannada: "ಗೂಟೆ ನಾಖ್ಟ್",
+English: "Goo-te Nakht"
+}
+},
+
+{
+german: "Auf Wiedersehen",
+meaning: "Goodbye",
+
+pronunciations: {
+Telugu: "ఆఫ్ వీడర్‌జేహెన్",
+Hindi: "आउफ वीडरज़ेहेन",
+Kannada: "ಆಫ್ ವೀಡರ್‌ಝೇಹೆನ್",
+English: "Owf Vee-der-zay-en"
+}
+}
+
+];
+
+let currentCard = 0;
+
+function showCard(){
+
+const language =
+localStorage.getItem(
+"pronunciationLanguage"
+) || "English";
+
+document.getElementById(
+"germanWord"
+).innerText =
+flashcards[currentCard].german;
+
+document.querySelector(
+".card p"
+).innerHTML =
+"<strong>Meaning:</strong> " +
+flashcards[currentCard].meaning;
+
+document.getElementById(
+"pronunciation"
+).innerText =
+flashcards[currentCard]
+.pronunciations[language];
+}
+
+function nextCard(){
+
+currentCard++;
+
+if(currentCard >= flashcards.length){
+
+currentCard = 0;
+}
+
+showCard();
+}
+
+function checkAnswer(correct){
+
+document.getElementById(
+"quizResult"
+).innerText =
+correct ?
+"✅ Correct!" :
+"❌ Try Again!";
+}
+
+showCard();
+
+</script>
+
+</body>
+</html>
