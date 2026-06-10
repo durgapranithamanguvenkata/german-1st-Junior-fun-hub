@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German A1 Fun Hub</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .card {
+            background: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .lang-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .class-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #selectedLanguage {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🇩🇪 German A1 Fun Hub</h1>
+
+    <div class="card">
+        <h2>Select Pronunciation Language</h2>
+
+        <button class="lang-btn" onclick="selectLanguage('Telugu')">🇹🇪 Telugu</button>
+
+        <button class="lang-btn" onclick="selectLanguage('Hindi')">🇮🇳 Hindi</button>
+
+        <button class="lang-btn" onclick="selectLanguage('Kannada')">🇰🇳 Kannada</button>
+
+        <button class="lang-btn" onclick="selectLanguage('English')">🇬🇧 English</button>
+
+        <p id="selectedLanguage">
+            No language selected
+        </p>
+
+        <small>
+            Pronunciation support only.
+            Meanings will remain in English.
+        </small>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Choose a Class</h2>
+
+        <button class="class-btn"
+                onclick="goToClass1()">
+            📚 Class 1 – Greetings & Pronouns
+        </button>
+
+        <button disabled>
+            📚 Class 2 – Coming Soon
+        </button>
+
+        <button disabled>
+            📚 Class 3 – Coming Soon
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+function selectLanguage(language) {
+
+    localStorage.setItem("pronunciationLanguage",
+                          language);
+
+    document.getElementById(
+        "selectedLanguage"
+    ).innerText =
+    "Selected: " + language;
+
+}
+
+window.onload = function() {
+
+    const savedLanguage =
+    localStorage.getItem(
+        "pronunciationLanguage"
+    );
+
+    if(savedLanguage){
+
+        document.getElementById(
+            "selectedLanguage"
+        ).innerText =
+        "Selected: " + savedLanguage;
+    }
+};
+
+function goToClass1(){
+
+    window.location.href =
+    "class1.html";
+}
+
+</script>
+
+</body>
+</html>
